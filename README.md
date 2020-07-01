@@ -33,19 +33,11 @@ Installation finished, navigate to gnome tweaks and enable it at "extensions"
     sed -i 's\/usr/bin/brave-browser-stable\env FONTCONFIG_PATH=/usr/share/defaults/fonts /usr/bin/brave-browser-stable\g' /usr/share/applications/brave-browser.desktop
     exit
 
-#### Virtualbox Install
-Installing DKMS bundle
+#### Virtualbox 6.1.10 Install
 
     sudo swupd bundle-add kernel-native-dkms
-
-Downloading current last release to Downloads
-
     cd ~/Downloads && wget https://download.virtualbox.org/virtualbox/6.1.10/VirtualBox-6.1.10-138449-Linux_amd64.run
-Making it X
-    
     chmod +x VirtualBox-6.1.10-138449-Linux_amd64.run
-Running
-
     sudo ./VirtualBox-6.1.10-138449-Linux_amd64.run
 ***Optional! In my case without this steps my laptop is not booting anymore***
 
@@ -116,7 +108,7 @@ This will install Winscp , if you running Wine first time accept & install all r
 
     wine WinSCP-5.17.6-Setup.exe 
 
-# Flameshot screenshot utility
+#### Flameshot screenshot utility
     sudo swupd bundle-add qt-basic-dev
     cd ~/Downloads/ && git clone https://github.com/lupoDharkael/flameshot && cd flameshot
     sed -i '1i#include "qpainterpath.h"' src/third-party/Qt-Color-Widgets/src/color_wheel.cpp 
