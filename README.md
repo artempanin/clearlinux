@@ -44,15 +44,10 @@ Installation finished, navigate to gnome tweaks and enable it at "extensions"
     sed -i 's\/usr/bin/brave-browser-stable\env FONTCONFIG_PATH=/usr/share/defaults/fonts /usr/bin/brave-browser-stable\g' /usr/share/applications/brave-browser.desktop
     exit
 
-<<<<<<< ours
 ## Virtualization software
 
 #### Virtualbox 6.1.10 Install
 
-=======
-#### Virtualbox 6.1.10 Install
-
->>>>>>> theirs
     sudo swupd bundle-add kernel-native-dkms
     cd ~/Downloads && wget https://download.virtualbox.org/virtualbox/6.1.10/VirtualBox-6.1.10-138449-Linux_amd64.run
     chmod +x VirtualBox-6.1.10-138449-Linux_amd64.run
