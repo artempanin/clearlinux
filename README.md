@@ -1,13 +1,36 @@
 ## My Personal Clear Linux setup guide
 
 #### Content
-- [General Settings](#General)
-  - [Cleanup](#Cleanup)
-  - [Configure Swupd](#Configure)
-  - [Dash to panel](#"Dash)
-- [Virtualization](#Virtualization)
-  - [VirtualBox](#VirtualBox)
-  - [Vmware Workstation](#VMware)
+- [General Settings](#general-settings)
+    + [Cleanup (carefully check what you removing!)](#cleanup--carefully-check-what-you-removing--)
+    + [Configure swupd](#configure-swupd)
+    + [Additional network tools](#additional-network-tools)
+    + ["Dash to panel" install](#-dash-to-panel--install)
+    + [Freshpaper (BING wallpapers daily, love it!)](#freshpaper--bing-wallpapers-daily--love-it--)
+    + [Wine (for winscp and other windows software)](#wine--for-winscp-and-other-windows-software-)
+- [Internet software](#internet-software)
+    + [Install brave](#install-brave)
+    + [Telegram](#telegram)
+    + [Protonmail Desktop Client installation with AppImage](#protonmail-desktop-client-installation-with-appimage)
+    + [Nextcloud](#nextcloud)
+- [Virtualization software](#virtualization-software)
+    + [Virtualbox 6.1.10 Install](#virtualbox-6110-install)
+    + [Vmware Workstation 15.5.6](#vmware-workstation-1556)
+- [Office / Notes software](#office---notes-software)
+    + [Simplenote installation with AppImage](#simplenote-installation-with-appimage)
+    + [OnlyOffice Desktop Editiors](#onlyoffice-desktop-editiors)
+    + [Flameshot screenshot utility](#flameshot-screenshot-utility)
+- [Software development tools](#software-development-tools)
+    + [Pycharm Professional Python IDE](#pycharm-professional-python-ide)
+    + [Gitg](#gitg)
+    + [Atom](#atom)
+- [System Administration](#system-administration)
+    + [Winscp (sorry, but love this one)](#winscp--sorry--but-love-this-one-)
+    + [EasySSH](#easyssh)
+    + [Sqlitebrowser](#sqlitebrowser)
+- [Multimedia](#multimedia)
+    + [Audacious music player](#audacious-music-player)
+    + [VLC](#vlc)
 
 ## General Settings
 
@@ -31,6 +54,17 @@
 
 Installation finished, navigate to gnome tweaks and enable it at "extensions"
 
+
+#### Freshpaper (BING wallpapers daily, love it!)
+    sudo pip install freshpaper
+Just put a "freshpaper" in terminal , and wallpaper will be changed to most recent one
+
+#### Wine (for winscp and other windows software)
+    sudo swupd bundle-add wine
+
+
+## Internet software
+
 #### Install brave
 
     sudo su -
@@ -43,6 +77,21 @@ Installation finished, navigate to gnome tweaks and enable it at "extensions"
     rm -f brave-*.rpm
     sed -i 's\/usr/bin/brave-browser-stable\env FONTCONFIG_PATH=/usr/share/defaults/fonts /usr/bin/brave-browser-stable\g' /usr/share/applications/brave-browser.desktop
     exit
+    
+#### Telegram
+    flatpak install flathub org.telegram.desktop
+
+#### Protonmail Desktop Client installation with AppImage
+
+    mkdir ~/.apps
+    cd ~/.apps/ && wget https://github.com/protonmail-desktop/application/releases/download/1.0.4/protonmail-desktop-unofficial-1.0.4-x86_64.AppImage
+    chmod +x protonmail-desktop-unofficial*
+    sudo wget https://raw.githubusercontent.com/protonmail-desktop/application/master/src/main/images/Icon.png -O/usr/share/icons/hicolor/256x256/apps/protonmail.png
+    echo -e "[Desktop Entry]\nType=Application\nName=ProtonMail\nIcon=protonmail\nExec=.apps/protonmail-desktop-unofficial-1.0.4-x86_64.AppImage\nTerminal=false\nCategories=Network;" > ~/.local/share/applications/protonmail.desktop
+    update-desktop-database ~/.local/share/applications/
+
+#### Nextcloud
+    flatpak install flathub org.nextcloud.Nextcloud
 
 ## Virtualization software
 
@@ -105,8 +154,7 @@ Only one problem that i am not solved yet, that after restart you need to run Vm
     sudo /etc/init.d/vmware start
 
 
-#### Telegram
-    flatpak install flathub org.telegram.desktop
+## Office / Notes software
 
 #### Simplenote installation with AppImage
     mkdir ~/.apps
@@ -116,31 +164,8 @@ Only one problem that i am not solved yet, that after restart you need to run Vm
     echo -e "[Desktop Entry]\nType=Application\nName=SimpleNote\nIcon=simplenote\nExec=.apps/Simplenote-linux-1.19.0-x86_64.AppImage\nTerminal=false\nCategories=Office;" > ~/.local/share/applications/simplenote.desktop
     update-desktop-database ~/.local/share/applications/
 
-#### Protonmail Desktop Client installation with AppImage
-    mkdir ~/.apps
-    cd ~/.apps/ && wget https://github.com/protonmail-desktop/application/releases/download/1.0.4/protonmail-desktop-unofficial-1.0.4-x86_64.AppImage
-    chmod +x protonmail-desktop-unofficial*
-    sudo wget https://raw.githubusercontent.com/protonmail-desktop/application/master/src/main/images/Icon.png -O/usr/share/icons/hicolor/256x256/apps/protonmail.png
-    echo -e "[Desktop Entry]\nType=Application\nName=ProtonMail\nIcon=protonmail\nExec=.apps/protonmail-desktop-unofficial-1.0.4-x86_64.AppImage\nTerminal=false\nCategories=Network;" > ~/.local/share/applications/protonmail.desktop
-    update-desktop-database ~/.local/share/applications/
-
 #### OnlyOffice Desktop Editiors
     flatpak install flathub org.onlyoffice.desktopeditors
-
-#### Audacious music player
-    sudo swupd bundle-add audacious
-
-#### Pycharm Professional Python IDE
-    flatpak install flathub com.jetbrains.PyCharm-Professional
-
-#### Wine (for winscp and other windows software)
-    sudo swupd bundle-add wine
-
-#### Winscp (sorry, but love this one)
-    cd ~/Downloads/ && wget https://winscp.net/download/WinSCP-5.17.6-Setup.exe
-This will install Winscp , if you running Wine first time accept & install all required libs
-
-    wine WinSCP-5.17.6-Setup.exe
 
 #### Flameshot screenshot utility
     sudo swupd bundle-add qt-basic-dev
@@ -155,27 +180,38 @@ Name: Any
 Command: flameshot gui
 Shortcut: bind something
 
+
+## Software development tools
+#### Pycharm Professional Python IDE
+    flatpak install flathub com.jetbrains.PyCharm-Professional
+
+#### Gitg
+    flatpak install flathub org.gnome.gitg
+
+#### Atom 
+    flatpak install flathub io.atom.Atom
+    
+## System Administration
+
+#### Winscp (sorry, but love this one)
+    cd ~/Downloads/ && wget https://winscp.net/download/WinSCP-5.17.6-Setup.exe
+This will install Winscp , if you running Wine first time accept & install all required libs
+
+    wine WinSCP-5.17.6-Setup.exe
+
+#### EasySSH
+    flatpak install flathub com.github.muriloventuroso.easyssh
+
 #### Sqlitebrowser
 
     cd ~/Downloads && git clone https://github.com/sqlitebrowser/sqlitebrowser.git && cd sqlitebrowser
     cmake . && make -j4
     sudo make install
 
-#### Nextcloud
-    flatpak install flathub org.nextcloud.Nextcloud
+## Multimedia 
 
-#### Sublime text
-    flatpak install flathub com.sublimetext.three
+#### Audacious music player
+    sudo swupd bundle-add audacious
 
 #### VLC
     sudo swupd bundle-add vlc
-
-##### Freshpaper (BING wallpapers daily, love it!)
-    sudo pip install freshpaper
-Just put a "freshpaper" in terminal , and wallpaper will be changed to most recent one
-
-#### EasySSH
-    flatpak install flathub com.github.muriloventuroso.easyssh
-
-#### Gitg
-    flatpak install flathub org.gnome.gitg
