@@ -22,6 +22,8 @@
     + [Flameshot screenshot utility](#flameshot-screenshot-utility)
 - [Software development tools](#software-development-tools)
     + [Pycharm Professional Python IDE](#pycharm-professional-python-ide)
+    + [PyEnv](#pyenv)
+    + [Pypy](#pypy)
     + [Gitg](#gitg)
     + [Atom](#atom)
 - [System Administration](#system-administration)
@@ -77,7 +79,7 @@ Just put a "freshpaper" in terminal , and wallpaper will be changed to most rece
     rm -f brave-*.rpm
     sed -i 's\/usr/bin/brave-browser-stable\env FONTCONFIG_PATH=/usr/share/defaults/fonts /usr/bin/brave-browser-stable\g' /usr/share/applications/brave-browser.desktop
     exit
-    
+
 #### Telegram
     flatpak install flathub org.telegram.desktop
 
@@ -185,12 +187,29 @@ Shortcut: bind something
 #### Pycharm Professional Python IDE
     flatpak install flathub com.jetbrains.PyCharm-Professional
 
+#### PyEnv
+     sudo swupd bundle-add devpkg-ncurses sqlite devpkg-openssl tcl-basic devpkg-readline devpkg-bzip2 devpkg-sqlite-autoconf devpkg-libffi devpkg-xz
+     curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+     ~/.pyenv/bin/pyenv install 2.7.18
+     ~/.pyenv/versions/2.7.18/bin/pip install pycparser
+
+#### Pypy
+     sudo swupd bundle-add mercurial devpkg-expat dev-utils-dev
+     cd ~/Downloads/ && hg clone https://foss.heptapod.net/pypy/pypy
+     cd pypy && hg update py3.6
+     cd pypy/goal/
+     ~/.pyenv/versions/2.7.18/bin/python2.7 ../../rpython/bin/rpython --opt=jit
+     cd ../tool/release/
+     ~/.pyenv/versions/2.7.18/bin/python2.7 package.py --archive-name=pypy
+     sudo mkdir /opt/pypy && sudo cp -r /tmp/usession-py3.6-$USERNAME/build/pypy/* /opt/pypy
+     sudo ln -s /opt/pypy/bin/pypy3 /usr/bin/pypy
+
 #### Gitg
     flatpak install flathub org.gnome.gitg
 
-#### Atom 
+#### Atom
     flatpak install flathub io.atom.Atom
-    
+
 ## System Administration
 
 #### Winscp (sorry, but love this one)
@@ -208,7 +227,7 @@ This will install Winscp , if you running Wine first time accept & install all r
     cmake . && make -j4
     sudo make install
 
-## Multimedia 
+## Multimedia
 
 #### Audacious music player
     sudo swupd bundle-add audacious
